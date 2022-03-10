@@ -33,3 +33,76 @@
     * 조건
         + 구동속도를 3으로 설정
         + 핸들을 꺾어서 8자 모양으로 주행 (좌회전 + 직진 + 우회전 + 직진 ....)
+
+    * 8_drive.py
+    ```python
+    #!/usr/bin/env python
+    # -*- coding: utf-8 -*-
+    # -*- coding: euckr -*-
+
+    # import 필요한 모듈 가져오기
+    import rospy
+    import time
+    from xycar_motor.msg import xycar_motor
+
+
+    motor_control = xycar_motor()
+
+    # 노드 새로 만들기
+    rospy.init_node('my_motor')
+
+    # 토픽의 발행을 준비
+    pub = rospy.Publisher('xycar_motor',xycar_motor,queue_size=1)
+
+
+    # 토픽을 발행하는 함수 만들기
+
+    def motor_pub(angle,speed):
+        global pub
+        global motor_control
+        motor_control.angle=angle
+        motor_control.speed=speed
+        
+        pub.publish(motor_control)
+
+    # 차량의 속도는 고정시킨다
+    speed = 3
+
+    # 차량의 조향각을 바꿔가면서 8자로 주행시킨다.
+
+    while not rospy.is_shutdown():
+        angle = -50
+        for i in range(40):
+            motor_pub(angle,speed)
+            time.sleep(0.1)
+
+        angle = 0
+        
+        for i in range(40):
+            motor_pub(angle,speed)
+            time.sleep(0.1)
+
+        angle = 50
+
+        for i in range(40):
+            motor_pub(angle,speed)
+            time.sleep(0.1)
+
+        angle=0
+        for i in range(40):
+            motor_pub(angle, speed)
+            time.sleep(0.1)
+
+            
+    ```
+
+    * 8_drive.launch
+
+    ```html
+    <launch>
+        <include file="$(find xycar_motor)/launch/xycar_motor_a2.launch"/>
+        <node pkg ="my_motor" type="8_drive.py" name="auto_driver" output="screen"/>
+    </launch>
+
+    ```
+            
