@@ -57,3 +57,8 @@ week10/pytorch_first_step/output/model_epoch12.pt
 week10/pytorch_first_step/output/model_epoch13.pt
 week10/pytorch_first_step/output/model_epoch14.pt
 week10/pytorch_first_step/utils/__pycache__/tools.cpython-38.pyc
+week10/week10_practice/CNN/function/__pycache__/__init__.cpython-38.pyc
+week10/week10_practice/CNN/function/__pycache__/activation.cpython-38.pyc
+week10/week10_practice/CNN/function/__pycache__/convolution.cpython-38.pyc
+week10/week10_practice/CNN/function/__pycache__/fc.cpython-38.pyc
+week10/week10_practice/CNN/function/__pycache__/pool.cpython-38.pyc
