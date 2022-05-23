@@ -65,7 +65,7 @@
 
     current_time =rospy.Time.now()      # 시간 정보 계산용 변수
     last_time = rospy.Time.now()
-    
+
     r=rospy.Rate(1.0)                   # 1초에 한번 루프돌기
     while not rospy.is_shutdown():
         current_time = rospy.Time.now()

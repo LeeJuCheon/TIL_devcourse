@@ -59,7 +59,7 @@ def main():
 
     if torch.cuda.is_available():
         print("gpu")
-        device = torch.device("cuda")
+        device = torch.device("cuda:0")
     else:
         print("cpu")
         device = torch.device("cpu")
@@ -128,7 +128,7 @@ def main():
                 total_loss+=loss_val.item()
                 
                 if iter%100 ==0:
-                    print("{} epoch {} inter loss : {}".format(e,iter,loss_val.item()))
+                    print("{} epoch {} iter loss : {}".format(e,iter,loss_val.item()))
                 iter+=1
 
 
